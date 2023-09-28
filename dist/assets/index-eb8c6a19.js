@@ -1,0 +1,1 @@
+const e=({})=>({columns:[{titleToken:"CREATED AT",field:"createdAt",type:"date",isActive:!0},{titleToken:"ROLE",field:"name",isActive:!0},{titleToken:"ACTIVATED",type:"checkbox",field:"roleProject",isActive:!0},{titleToken:"PREDEFINED",type:"!checkbox",field:"project_id",isActive:!0}]});export{e as p};
