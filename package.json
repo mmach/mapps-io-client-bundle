@@ -11,6 +11,10 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
     "compression": "^1.7.4",
+    "cookie": "^0.6.0",
+    "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.1.0",
+    "cookies": "^0.9.1",
     "dotenv": "^16.3.1",
     "express": "^4.17.1",
     "express-history-api-fallback": "^2.2.1",

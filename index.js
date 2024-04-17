@@ -5,7 +5,9 @@ var dotenv = require('dotenv')
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const cheerio = require('cheerio');
 const fs = require('fs');
-
+var Cookies = require('cookies')
+var keys = ['keyboard cat']
+const cookieParser = require('cookie-parser');
 dotenv.config()
 
 fs.readFile('./dist/index.html', (result, data) => {
@@ -23,6 +25,8 @@ fs.readFile('./dist/index.html', (result, data) => {
 //const $ = cheerio.load('<h2 class="title">Hello world</h2>');
 
 const app = express();
+app.use(cookieParser());
+
 //const root = `${__dirname}/static`
 const options = {
     target: process.env.VITE_API_URL, // target host
@@ -46,6 +50,13 @@ const optionsBlob = {
 app.use(compression());//add this as the 1st middleware
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'webcomponent')));
+app.use('/mapps-init-load', function (req, res) {
+    res.cookie('project-token', 123, { maxAge: 900000, httpOnly: true })
+    res.cookie('project-socket', 123, { maxAge: 900000, httpOnly: true })
+
+    console.log('cookie have created successfully');
+    res.end()
+});
 
 const exampleProxy = createProxyMiddleware(options);
 const exampleBlobProxy = createProxyMiddleware(optionsBlob);
